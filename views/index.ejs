@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,47 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    Hello EJS!
+    <a href="/filter">filter</a>
+    <a href="/new">new</a>
+
+
+    <h1>Termékek</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Kategória</th>
+                <th>Ár</th>
+                <th>Készlet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(product => { %>
+    <% if (product.stock === 0) { %>
+        <tr style="background-color: red; font-weight: bold;">
+            <td><%= product.name %></td>
+            <td><%= product.category %></td>
+            <td><%= product.price %> Ft</td>
+            <td><%= product.stock %> db</td>
+        </tr>
+    <% } else if (product.stock < 5) { %>
+        <tr>
+            <td><%= product.name %></td>
+            <td><%= product.category %></td>
+            <td><%= product.price %> Ft</td>
+            <td style="color: red; font-weight: bold;"><%= product.stock %> db</td>
+        </tr>
+    <% } else { %>
+        <tr>
+            <td><%= product.name %></td>
+            <td><%= product.category %></td>
+            <td><%= product.price %> Ft</td>
+            <td><%= product.stock %> db</td>
+        </tr>
+    <% } %>
+<% }) %>
+        </tbody>
+    </table>
 </body>
 </html>
